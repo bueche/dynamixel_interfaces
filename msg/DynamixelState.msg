@@ -4,6 +4,10 @@ int32 comm_state
 int32[] id
 bool[] torque_state
 int32[] dxl_hw_state
+int16[] temperature
+int16[] voltage
+int16[] present_current
+int16[] present_load
 
 int32 COMM_STATE_OK = 0
 int32 COMM_STATE_CANNOT_FIND_CONTROL_ITEM = -1
