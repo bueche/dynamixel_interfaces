@@ -1,9 +1,16 @@
 std_msgs/Header header
 
+# all arrays in tandem, elements at ith position correspond to servo noted in id[]
+# see corresponding servo manuals for return values and ranges
+
 int32 comm_state
 int32[] id
 bool[] torque_state
 int32[] dxl_hw_state
+int16[] present_temperature
+int16[] present_input_voltage
+int16[] present_current
+int16[] present_load
 
 int32 COMM_STATE_OK = 0
 int32 COMM_STATE_CANNOT_FIND_CONTROL_ITEM = -1
