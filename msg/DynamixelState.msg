@@ -7,10 +7,10 @@ int32 comm_state
 int32[] id
 bool[] torque_state
 int32[] dxl_hw_state
-int16[] present_temperature
-int16[] present_input_voltage
-int16[] present_current
-int16[] present_load
+int16[] present_temperature # Unit: Celsius, scaled by 1
+int16[] present_input_voltage # Unit: mV, scaled by 10 (123 means 12.3V)
+int16[] present_current # Unit: mA, scaled by 1 and +/- indicates rotation direction
+int16[] present_load # Unit: 0.1% (209 means 20.9%) and +/- indicates rotation direction
 
 int32 COMM_STATE_OK = 0
 int32 COMM_STATE_CANNOT_FIND_CONTROL_ITEM = -1
@@ -37,3 +37,20 @@ int32 COMM_STATE_DXL_REBOOT_FAIL = -17
 # dxl_hw_state = 8: motor encoder
 # dxl_hw_state = 16: electrical shork
 # dxl_hw_state = 32: Overload
+#
+# Additional notes on temperature, input_voltage, current, etc:
+# 1. To enable the reporting of these add the corresponding GPIO state_interface 
+#    elements in the URDF file. For example:
+#
+#      <!-- Motor 3: XL330-M288 (elbow_flex) -->
+#        <gpio name="dxl3">
+#           <param name="type">dxl</param>
+#           <param name="ID">3</param>
+#           <command_interface name="Goal Position"/>
+#           <state_interface name="Present Position"/>
+#           <state_interface name="Present Velocity"/>
+#           <state_interface name="Present Current"/>
+#           <state_interface name="Present Temperature"/>
+#           <state_interface name="Present Input Voltage"/>
+#        </gpio>
+#
