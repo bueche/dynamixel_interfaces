@@ -1,8 +1,8 @@
 std_msgs/Header header
 
-# all arrays in tandem, elements at ith position correspond to servo noted in id[]
-# see corresponding servo manuals for return values and ranges
-
+# All per-servo arrays below MUST have the same length as `id`. For each index i,
+# servo id[i] has its corresponding state stored at index i in every array.
+# See the corresponding servo manuals for return values and ranges.
 int32 comm_state
 int32[] id
 bool[] torque_state
